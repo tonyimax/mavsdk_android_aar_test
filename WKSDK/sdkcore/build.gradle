@@ -1,0 +1,24 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'com.reverse.sdkcore'
+    compileSdk 34
+    defaultConfig {
+        minSdk 30
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation libs.appcompat
+    implementation libs.material
+    implementation 'io.mavsdk:mavsdk:2.1.0'
+    implementation 'io.mavsdk:mavsdk-server:2.1.0'
+    implementation 'org.slf4j:slf4j-api:2.0.13'
+}
