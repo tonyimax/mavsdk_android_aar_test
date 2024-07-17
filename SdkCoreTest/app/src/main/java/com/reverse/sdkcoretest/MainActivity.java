@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         btnRtl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                c.Rtl();
+                c.Rtl();//返航
             }
         });
     }
