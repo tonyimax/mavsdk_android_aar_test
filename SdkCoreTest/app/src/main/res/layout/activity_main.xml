@@ -35,6 +35,15 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
+        android:id="@+id/btnRtl"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="返航"
+        app:layout_constraintTop_toBottomOf="@+id/btnDisArm"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
         android:id="@+id/btnLand"
         android:layout_width="411dp"
         android:layout_height="wrap_content"

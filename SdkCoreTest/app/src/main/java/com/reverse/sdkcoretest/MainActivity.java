@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnDisArm = binding.btnDisArm;//闭锁按钮
         Button btnTakeOff = binding.btnTakeOff;//起飞按钮
         Button btnLand = binding.btnLand;//降落按钮
+        Button btnRtl = binding.btnRtl;//返航按钮
 
         btnTakeOff.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 c.DisArm();//闭锁
+            }
+        });
+
+        btnRtl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                c.Rtl();
             }
         });
     }

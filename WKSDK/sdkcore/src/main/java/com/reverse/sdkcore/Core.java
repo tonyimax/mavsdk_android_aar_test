@@ -60,10 +60,14 @@ public class Core {
     }
 
     public void TakeOff(){
-        drone.getAction().takeoff().subscribe();
+        drone.getAction().arm().andThen(drone.getAction().takeoff()).subscribe();
     }
 
     public void Land(){
         drone.getAction().land().subscribe();
+    }
+
+    public void Rtl(){
+        drone.getAction().returnToLaunch().subscribe();
     }
 }
