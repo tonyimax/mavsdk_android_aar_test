@@ -4,16 +4,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import com.reverse.sdkcore.Core;
 import com.reverse.sdkcoretest.databinding.ActivityMainBinding;
+import com.reverse.sdkcore.Core; //导入SDK包
 
 public class MainActivity extends AppCompatActivity {
-
-    // Used to load the 'sdkcoretest' library on application startup.
     static {
         System.loadLibrary("sdkcoretest");
     }
@@ -23,34 +18,48 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        // Example of a call to a native method
         TextView tv = binding.sampleText;
         tv.setText(stringFromJNI());
 
+        //创建SDK实例
         Core c = new Core();
+        //启动服务
         c.runMavsdkServer();
+        Button btnArm = binding.btnArm;//解锁按钮
+        Button btnDisArm = binding.btnDisArm;//闭锁按钮
+        Button btnTakeOff = binding.btnTakeOff;//起飞按钮
+        Button btnLand = binding.btnLand;//降落按钮
 
-        ConstraintLayout btnArm = binding.btnArm;
+        btnTakeOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                c.TakeOff();//起飞
+            }
+        });
+
+        btnLand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                c.Land();//降落
+            }
+        });
+
         btnArm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("ARM======");
-                c.Arm();
-                System.out.println("ARM======called");
-                System.out.println("TakeOff======");
-                c.TakeOff();
-                System.out.println("TakeOff======called");
+                c.Arm();//解锁
+            }
+        });
+
+        btnDisArm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                c.DisArm();//闭锁
             }
         });
     }
 
-    /**
-     * A native method that is implemented by the 'sdkcoretest' native library,
-     * which is packaged with this application.
-     */
     public native String stringFromJNI();
 }
